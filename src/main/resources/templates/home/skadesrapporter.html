@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Alle skadesrapporter</title>
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" href="/css/skadesrapport.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <link rel="stylesheet" href="/css/pile.css">
+</head>
+<body>
+<!-- Genbrugt header -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h1 style="text-align: center">Liste over skadesrapporter</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Rapport ID</th>
+        <th>Beskrivelse</th>
+        <th>Pris</th>
+        <th>Vognnummer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="rapport : ${rapporter}">
+        <td th:text="${rapport.rapport_id}">1</td>
+        <td th:text="${rapport.beskrivelse}">Beskrivelse</td>
+        <td th:text="${rapport.pris}">1000</td>
+        <td th:text="${rapport.vognnummer}">12345</td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Opret ny skadesrapport</h2>
+
+
+<form th:action="@{/skadesrapport}" method="post">
+    <label for="beskrivelse">Beskrivelse:</label><br>
+    <textarea id="beskrivelse" name="beskrivelse" rows="4" cols="50" required></textarea><br><br>
+
+    <label for="pris">Pris:</label><br>
+    <input type="number" id="pris" name="pris" required><br><br>
+
+    <label for="vognnummer">Vognnummer:</label><br>
+    <input type="number" id="vognnummer" name="vognnummer" required><br><br>
+
+    <input type="submit" value="Opret rapport">
+</form>
+
+</body>
+</html>

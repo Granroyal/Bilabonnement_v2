@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Opert kunde</title>
+    <link rel="stylesheet" href="/css/lejeaftale.css">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" href="/css/pile.css">
+
+    <style>
+        h1, form {
+            text-align: center;
+        }
+
+        .tabel {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+        }
+
+    </style>
+    <link rel="stylesheet" href="/css/table.css">
+
+</head>
+<body>
+<!-- Genbrugt header via Thymeleaf fragment -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<div class="indhold">
+
+    <h1>Opret kunde</h1>
+
+    <!--Actions til og oprette en kunde-->
+    <form action="/opretkunde" method="post">
+        <label for="navn">Navn:</label>
+        <input type="text" id="navn" name="navn"><br>
+
+        <label for="email">Mail:</label>
+        <input type="email" id="email" name="email"><br>
+
+        <label for="cpr_nummer">CPR nummer</label>
+        <input type="text" id="cpr_nummer" name="cpr_nummer"><br>
+
+        <label for="koerekortnummer">Kørekortnummer:</label>
+        <input type="number" id="koerekortnummer" name="koerekortnummer"><br>
+
+        <label for="adresse_id">Adresse_ID:</label>
+        <input type="number" id="adresse_id" name="adresse_id"><br>
+
+        <button type="submit">Opret kunde</button>
+        <button type="reset" onclick="return confirm('er du sikker på du vil reset?')">Reset</button>
+
+
+
+    </form>
+        <div class="tabel">
+        <table>
+            <thead>
+            <tr>
+                <th>Adresse ID</th>
+                <th>Vejnavn</th>
+                <th>Vejnummer</th>
+                <th>Postnummer</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="adresse : ${adresseList}">
+                <td th:text="${adresse.adresse_id}"></td>
+                <td th:text="${adresse.vej_navn}"></td>
+                <td th:text="${adresse.vej_nummer}"></td>
+                <td th:text="${adresse.postnummer}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        </div>
+</div>
+</body>
+</html>

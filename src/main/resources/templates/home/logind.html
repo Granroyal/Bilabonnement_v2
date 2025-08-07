@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <title>Bilabonnement Login</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+
+        div {
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 500px;
+            margin-bottom: 100px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <!-- Logo -->
+    <img src="images/BILABONNEMENT_logo.png" alt="BilAbonnement Logo" class="logo">
+
+    <!-- Login overskrift -->
+    <h1>🔒 Log ind</h1>
+
+
+    <!-- Login-formular -->
+    <div th:if="${fejlbesked != null}" class="fejlbesked">
+        <p th:text="${fejlbesked}" style="color: red;"></p>
+    </div>
+    <form action="/logind" method="post">
+        <input type="text" name="brugernavn" placeholder="Brugernavn" required>
+        <input type="password" name="adgangskode" placeholder="Adgangskode" required>
+        <input type="submit" value="Log Ind">
+    </form>
+</div>
+</body>
+</html>
